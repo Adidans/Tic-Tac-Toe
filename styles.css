@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    background-color: #0C1021;
+}
+
+h1{
+    color: #CE2F2F;
+    font-weight: 600;
+    text-align: center;
+    margin: 15px;
+}
+
+hr{
+    border: 2px solid #121832;
+}
+
+.board{
+    display: grid;
+    width: 600px;
+    height: 600px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.cell{
+    border: 2px solid #CE2F2F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    display: flex;
+    flex-direction: column; 
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+}
+
+#topLeft{
+    border-top: none;
+    border-left: none;
+}
+
+#topMid{
+    border-top: none;
+}
+
+#topRight{
+    border-top: none;
+    border-right: none;
+}
+
+#midLeft{
+    border-left: none;
+}
+
+#midRight{
+    border-right: none;
+}
+
+#botLeft{
+    border-left: none;
+    border-bottom: none;
+}
+
+#botMid{
+    border-bottom: none;
+}
+
+#botRight{
+    border-bottom: none;
+    border-right: none;
+}
+
+#cross{
+    width: 200px;
+}
+
+#circle{
+    width: 200px;
+}
+
+.crossYellow{
+    width: 130px;
+}
+
+.circleGreen{
+    width: 150px;
+}
+
+.score{
+    color: #CE2F2F;
+    font-size: 30px;
+    font-weight: 600;
+    align-self: center;
+    margin: 80px 0;
+}
