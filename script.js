@@ -112,11 +112,15 @@ cells.forEach(cell => {
             gameBoard[cell.dataset.num] = 'x'
             displayBoard(gameBoard)
             turn = 'o'
+            cross.style.filter = 'none'
+            circle.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"
         }
         else if (gameBoard[cell.dataset.num] == '' && turn === 'o'){
             gameBoard[cell.dataset.num] = 'o'
             displayBoard(gameBoard)
             turn = 'x'
+            circle.style.filter = 'none'
+            cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"
         }
         checkWinState(gameBoard)
     })
