@@ -1,13 +1,7 @@
 const cells = document.querySelectorAll('.cell')
-let topLeft = document.getElementById('topLeft')
-let topMid = document.getElementById('topMid')
-let topRight = document.getElementById('topRight')
-let midLeft = document.getElementById('midLeft')
-let mid = document.getElementById('mid')
-let midRight = document.getElementById('midRight')
-let botLeft = document.getElementById('botLeft')
-let botMid = document.getElementById('botMid')
-let botRight = document.getElementById('botRight')
+const score = document.querySelector('.score')
+const crossScore = document.querySelector('.crossScore')
+const circleScore = document.querySelector('.circleScore')
 
 let turn = 'x';
 let winner;
@@ -24,7 +18,7 @@ function checkWinState(gameBoard) {
     // ['x', 'x', 'x',
     //  '', '', '',
     //  '', '', ''];
-    if(gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]){
+    if(gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] != ''){
         winner = gameBoard[0]
         return winner
     }
@@ -32,7 +26,7 @@ function checkWinState(gameBoard) {
     // ['', '', '',
     // 'x', 'x', 'x',
     // '', '', ''];
-    if(gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]){
+    else if(gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[3] != ''){
         winner = gameBoard[3]
         return winner
     }
@@ -40,7 +34,7 @@ function checkWinState(gameBoard) {
     // ['', '', '',
     // '', '', '',
     // 'x', 'x', 'x'];
-    if(gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]){
+    else if(gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[6] != ''){
         winner = gameBoard[6]
         return winner
     }
@@ -48,7 +42,7 @@ function checkWinState(gameBoard) {
     // ['x', '', '',
     // 'x', '', '',
     // 'x', '', ''];
-    if(gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]){
+    else if(gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] != ''){
         winner = gameBoard[0]
         return winner
     }
@@ -56,7 +50,7 @@ function checkWinState(gameBoard) {
     // ['', 'x', '',
     // '', 'x', '',
     // '', 'x', ''];
-    if(gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]){
+    else if(gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[1] != ''){
         winner = gameBoard[1]
         return winner
     }
@@ -64,7 +58,7 @@ function checkWinState(gameBoard) {
     // ['', '', 'x',
     // '', '', 'x',
     // '', '', 'x'];
-    if(gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]){
+    else if(gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[2] != ''){
         winner = gameBoard[2]
         return winner
     }
@@ -72,7 +66,7 @@ function checkWinState(gameBoard) {
     // ['x', '', '',
     // '', 'x', '',
     // '', '', 'x'];
-    if(gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]){
+    else if(gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] != ''){
         winner = gameBoard[0]
         return winner
     }
@@ -80,8 +74,13 @@ function checkWinState(gameBoard) {
     // ['', '', 'x',
     // '', 'x', '',
     // 'x', '', ''];
-    if(gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]){
+    else if(gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[2] != ''){
         winner = gameBoard[2]
+        return winner
+    }
+
+    else if(gameBoard[0] != '' && gameBoard[1] != '' && gameBoard[2] != '' && gameBoard[3] != '' && gameBoard[4] != '' && gameBoard[5] != '' && gameBoard[6] != '' && gameBoard[7] != '' && gameBoard[8] != ''){
+        winner = 'tie'
         return winner
     }
 }
@@ -123,5 +122,43 @@ cells.forEach(cell => {
             cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"
         }
         checkWinState(gameBoard)
+        if(checkWinState(gameBoard) == 'x'){
+            crossScore.textContent = parseInt(crossScore.textContent) + 1;
+            gameBoard = ['', '', '',
+            '', '', '',
+            '', '', ''];
+            cells.forEach(cell =>{
+                cell.innerHTML = ''
+            })
+            turn = 'x'
+            circle.style.filter = 'none'
+            cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"
+        }
+        else if(checkWinState(gameBoard) == 'o'){
+            circleScore.textContent = parseInt(circleScore.textContent) + 1;
+            gameBoard = ['', '', '',
+            '', '', '',
+            '', '', ''];
+            cells.forEach(cell =>{
+                cell.innerHTML = ''
+            })
+            turn = 'x'
+            circle.style.filter = 'none'
+            cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"            
+        }
     })
 });
+
+score.addEventListener('click', () => {
+    gameBoard = ['', '', '',
+                 '', '', '',
+                 '', '', ''];
+    cells.forEach(cell =>{
+        cell.innerHTML = ''
+    })
+    turn = 'x'
+    circle.style.filter = 'none'
+    cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"
+    crossScore.textContent = 0
+    circleScore.textContent = 0
+})
