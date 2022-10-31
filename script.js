@@ -146,6 +146,17 @@ cells.forEach(cell => {
             circle.style.filter = 'none'
             cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)"            
         }
+        else if (checkWinState(gameBoard) == 'tie'){
+            gameBoard = ['', '', '',
+            '', '', '',
+            '', '', ''];
+            cells.forEach(cell =>{
+                cell.innerHTML = ''
+            })
+            turn = 'x'
+            circle.style.filter = 'none'
+            cross.style.filter = "invert(34%) sepia(72%) saturate(3607%) hue-rotate(340deg) brightness(81%) contrast(99%)" 
+        }
     })
 });
 
